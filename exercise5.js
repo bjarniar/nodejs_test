@@ -1,9 +1,12 @@
-var fs = require('fs')
-var path = require('path')
+var filterFn = require('./exercise5_filter.js')
+var dir = process.argv[2]
+var filterStr = process.argv[3]
 
-fs.readdir(process.argv[2], function(err,list) {
-	list.forEach(function (file) {
-	if(path.extname(file) === '.' + process.argv[3])
-		console.log(file)
-	}
+filterFn(dir, filterStr, function (err, list) {
+  if (err)
+    return console.error('There was an error:', err)
+
+  list.forEach(function (file) {
+    console.log(file)
+  })
 })
